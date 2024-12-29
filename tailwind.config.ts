@@ -1,7 +1,6 @@
-import fluid, { extract } from 'fluid-tailwind'
+import fluid, { extract, fontSize, screens } from 'fluid-tailwind'
 import type { Config } from 'tailwindcss'
 import * as tailwindcssAnimate from 'tailwindcss-animate'
-import { PluginAPI } from 'tailwindcss/types/config'
 
 export default {
 	darkMode: ['class'],
@@ -14,10 +13,12 @@ export default {
 		extract,
 	},
 	theme: {
-		/** @type {import('fluid-tailwind').FluidThemeConfig} */
-		fluid: ({ theme }: { theme: PluginAPI['theme'] }) => ({
-			defaultScreens: ['20rem', theme('screens.lg')],
-		}),
+		screens,
+		fontSize,
+		// /** @type {import('fluid-tailwind').FluidThemeConfig} */
+		// fluid: ({ theme }: { theme: PluginAPI['theme'] }) => ({
+		// 	defaultScreens: ['20rem', theme('screens.lg')],
+		// }),
 		container: {
 			center: true,
 		},
