@@ -1,52 +1,20 @@
-import { useState } from 'react'
-import { useIsomorphicLayoutEffect } from 'usehooks-ts'
+import { useState, useEffect } from 'react'
 
-type UseMediaQueryOptions = {
-  defaultValue?: boolean
-  initializeWithValue?: boolean
-}
+export function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(false)
 
-const IS_SERVER = typeof window === 'undefined'
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query)
+    setMatches(mediaQuery.matches)
 
-export function useMediaQuery(
-  query: string,
-  { defaultValue = false, initializeWithValue = true }: UseMediaQueryOptions = {},
-): boolean {
-  const getMatches = (query: string): boolean => {
-    if (IS_SERVER) {
-      return defaultValue
+    const handler = (event: MediaQueryListEvent) => {
+      setMatches(event.matches)
     }
-    return window.matchMedia(query).matches
-  }
 
-  const [matches, setMatches] = useState<boolean>(() => {
-    if (initializeWithValue) {
-      return getMatches(query)
-    }
-    return defaultValue
-  })
-
-  function handleChange() {
-    setMatches(getMatches(query))
-  }
-
-  useIsomorphicLayoutEffect(() => {
-    const matchMedia = window.matchMedia(query)
-
-    handleChange()
-
-    if (matchMedia.addListener) {
-      matchMedia.addListener(handleChange)
-    } else {
-      matchMedia.addEventListener('change', handleChange)
-    }
+    mediaQuery.addEventListener('change', handler)
 
     return () => {
-      if (matchMedia.removeListener) {
-        matchMedia.removeListener(handleChange)
-      } else {
-        matchMedia.removeEventListener('change', handleChange)
-      }
+      mediaQuery.removeEventListener('change', handler)
     }
   }, [query])
 

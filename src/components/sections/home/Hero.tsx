@@ -13,9 +13,9 @@ const Hero = () => {
         style={{ objectFit: 'cover' }}
       />
       <div className="container flex h-full flex-col items-center justify-center">
-        <div className={`mx-auto grid max-w-xl place-items-center gap-5 md:pb-20 lg:pb-28 xl:pb-56`}>
+        <div className={`mx-auto grid max-w-xl place-items-center gap-5`}>
           <Image className={`h-auto max-w-[15rem]`} src={'/home/ai-glove.png'} alt={'logo'} width={580} height={408} />
-          <h1 className={`text-center text-lg font-semibold text-blue-200 lg:text-2xl xl:text-4xl`}>
+          <h1 className={`text-center text-2xl font-semibold text-blue-200 xl:text-4xl`}>
             RadioStation{' '}
             <span className={`bg-gradient-to-r from-purple-500 to-red-500 bg-clip-text text-transparent`}>AI</span>
           </h1>
@@ -24,7 +24,7 @@ const Hero = () => {
             seamless audio creation and broadcasting
           </p>
           <Link
-            href={`#`}
+            href={`/`}
             className="group flex max-w-[200px] items-center justify-center rounded-full bg-blue-600 px-4 py-2 text-base font-bold text-white hover:bg-blue-500 md:px-6 md:py-3 lg:uppercase"
           >
             Download Now
