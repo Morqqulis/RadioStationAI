@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--radius: 0.5rem;
+		--foreground: #fff;
+		--background: #000;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+
+	html,
+	body,
+	.wrapper {
+		@apply h-full;
+	}
+	.wrapper {
+		@apply flex flex-col;
+		> main {
+			@apply flex-[1_1_auto];
+		}
+	}
+}

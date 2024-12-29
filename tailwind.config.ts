@@ -1,18 +1,37 @@
-import type { Config } from "tailwindcss";
+import fluid, { extract } from 'fluid-tailwind'
+import type { Config } from 'tailwindcss'
+import * as tailwindcssAnimate from 'tailwindcss-animate'
+import { PluginAPI } from 'tailwindcss/types/config'
 
 export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-    },
-  },
-  plugins: [],
-} satisfies Config;
+	darkMode: ['class'],
+	content: {
+		files: [
+			'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+			'./src/components/**/*.{js,ts,jsx,tsx,mdx}',
+			'./src/app/**/*.{js,ts,jsx,tsx,mdx}',
+		],
+		extract,
+	},
+	theme: {
+		/** @type {import('fluid-tailwind').FluidThemeConfig} */
+		fluid: ({ theme }: { theme: PluginAPI['theme'] }) => ({
+			defaultScreens: ['20rem', theme('screens.lg')],
+		}),
+		container: {
+			center: true,
+		},
+		extend: {
+			colors: {
+				background: 'var(--background)',
+				foreground: 'var(--foreground)',
+			},
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)',
+			},
+		},
+	},
+	plugins: [fluid, tailwindcssAnimate],
+} satisfies Config
