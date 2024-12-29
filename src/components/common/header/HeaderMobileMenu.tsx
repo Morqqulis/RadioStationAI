@@ -1,3 +1,4 @@
+'use client'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Menu } from 'lucide-react'
 import HeaderMenu from './HeaderMenu'
@@ -16,7 +17,7 @@ const HeaderMobileMenu = () => {
           </SheetHeader>
           <HeaderMenu
             className={`mt-10 flex-col gap-4 text-center`}
-            linkClassName={`py-2 block text-xl text-blue-200`}
+            linkClassName={`py-2 block text-lg text-blue-200 `}
           />
         </SheetContent>
       </Sheet>
