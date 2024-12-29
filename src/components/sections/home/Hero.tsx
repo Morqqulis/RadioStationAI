@@ -14,7 +14,14 @@ const Hero = () => {
       />
       <div className="container flex h-full flex-col items-center justify-center">
         <div className={`mx-auto grid max-w-xl place-items-center gap-5`}>
-          <Image className={`h-auto max-w-[15rem]`} src={'/home/ai-glove.png'} alt={'logo'} width={580} height={408} />
+          <Image
+            className={`h-auto max-w-[15rem]`}
+            src={'/home/ai-glove.png'}
+            alt={'logo'}
+            width={580}
+            height={408}
+            loading={'lazy'}
+          />
           <h1 className={`text-center text-2xl font-semibold text-blue-200 xl:text-4xl`}>
             RadioStation{' '}
             <span className={`bg-gradient-to-r from-purple-500 to-red-500 bg-clip-text text-transparent`}>AI</span>
